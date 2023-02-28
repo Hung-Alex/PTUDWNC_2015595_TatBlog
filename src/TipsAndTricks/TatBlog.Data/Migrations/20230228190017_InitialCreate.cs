@@ -15,7 +15,7 @@ namespace TatBlog.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     UrlSlug = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageURL = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     JoinedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Notes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)

@@ -51,8 +51,8 @@ namespace TatBlog.Data.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ImageURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("JoinedDate")
                         .HasColumnType("datetime");
