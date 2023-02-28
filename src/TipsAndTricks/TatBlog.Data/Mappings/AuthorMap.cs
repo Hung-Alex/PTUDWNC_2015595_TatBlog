@@ -1,0 +1,32 @@
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TatBlog.Core.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace TatBlog.Data.Mappings
+{
+    public class AuthorMap : IEntityTypeConfiguration<Author>
+    {
+        public void Configure(EntityTypeBuilder<Author> builder)
+        {
+            builder.ToTable("Authors");
+            builder.HasKey(a => a.Id);
+            builder.Property(a => a.FullName).IsRequired().HasMaxLength(100);
+            builder.Property(a => a.UrlSlug).IsRequired().HasMaxLength(100);
+            builder.Property(a => a.ImageURL).IsRequired();
+            builder.Property(a => a.Email).HasMaxLength(150);
+            builder.Property(a => a.JoinedDate).HasColumnType("datetime");
+            builder.Property(a => a.Notes).HasMaxLength(500);
+
+
+
+
+
+        }
+    }
+}
