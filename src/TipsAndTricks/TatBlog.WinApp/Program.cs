@@ -54,6 +54,26 @@ namespace TatBlog.WinApp
                 Console.WriteLine("Category :{0}", post.Category.Name);
                 Console.WriteLine("".PadRight(80, '-'));
             }
+            var categories = await blogRepo.GetCategoriesAsync();
+            Console.WriteLine("{0,-5}{1,-50}{2,10}", "ID", "Name", "Count");
+            foreach (var item in categories)
+            {
+                Console.WriteLine("{0,-5}{1,-50}{2,10}", item.Id, item.Name, item.PostCount);
+            }
+
+            var paginParams = new PagingParams()
+            {
+                PageNumber= 1,
+                PageSize=5,
+                SortColumn="Name",
+                SortOrder="DESC"
+            };
+            var tagsList = await blogRepo.GetPagedTagsAsync(paginParams);
+            Console.WriteLine("{0,-5}{1,-50}{2,10}", "ID", "Name", "Count");
+            foreach (var item in tagsList)
+            {
+                Console.WriteLine("{0,-5}{1,-50}{2,10}", item.Id, item.Name, item.PostCount);
+            }
             Console.ReadKey();
         }
 

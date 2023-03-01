@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TatBlog.Core.Contracts;
+using TatBlog.Core.DTO;
 using TatBlog.Core.Entities;
 
 namespace TatBlog.Services.Blogs
@@ -14,6 +16,8 @@ namespace TatBlog.Services.Blogs
         Task<IList<Post>> GetPopularArticleAsync(int number, CancellationToken cancellationToken = default);
         Task<bool> IsPostSlugExistedAsync(int postid, string slug, CancellationToken cancellationToken = default);
         Task IncreaseViewCountAsync(int postid, CancellationToken cancellationToken = default);
+        Task<IList<CategoryItem>> GetCategoriesAsync(bool showOnMenu = false, CancellationToken cancellationToken = default);
+        Task<IPagedList<TagItem>> GetPagedTagsAsync(IPagingParams pagingParams, CancellationToken cancellationToken = default);
 
     }
 }

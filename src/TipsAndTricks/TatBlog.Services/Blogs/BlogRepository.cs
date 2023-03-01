@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 using TatBlog.Core.Entities;
 using TatBlog.Data.Contexts;
 using System.Linq.Dynamic.Core;
-
+using TatBlog.Core.DTO;
+using TatBlog.Core.Contracts;
+using TatBlog.Services.Extensions;
 
 namespace TatBlog.Services.Blogs
 {
@@ -21,6 +23,44 @@ namespace TatBlog.Services.Blogs
             _context = context;
 
         }
+
+        public async Task<IList<CategoryItem>> GetCategoriesAsync(bool showOnMenu = false, CancellationToken cancellationToken = default)
+        {
+            IQueryable<Category> categories = _context.Set<Category>();
+
+            if (showOnMenu)
+            {
+                categories = categories.Where(x => x.ShowOnMenu);
+            }
+
+            return await categories.OrderByDescending(x => x.Name)
+                                  .Select(x => new CategoryItem()
+                                  {
+                                      Id = x.Id,
+                                      Name = x.Name,
+                                      UrlSlug = x.UrlSlug,
+                                      Description = x.Description,
+                                      ShowOnMenu = x.ShowOnMenu,
+                                      PostCount = x.Posts.Count(p => p.Published)
+                                  }).ToListAsync(cancellationToken);
+        }
+
+        public async Task<IPagedList<TagItem>> GetPagedTagsAsync(IPagingParams pagingParams, CancellationToken cancellationToken = default)
+        {
+           
+                var tagQuery = _context.Set<Tag>()
+                                          .Select(x => new TagItem()
+                                          {
+                                              Id = x.Id,
+                                              Name = x.Name,
+                                              UrlSlug = x.UrlSlug,
+                                              Description = x.Description,
+                                              PostCount = x.Posts.Count(p => p.Published)
+                                          });
+                return await tagQuery.ToPagedListAsync(pagingParams, cancellationToken);
+            
+        }
+
         public async Task<IList<Post>> GetPopularArticleAsync(int numPosts, CancellationToken cancellationToken = default)
         {
             return await _context.Set<Post>()
