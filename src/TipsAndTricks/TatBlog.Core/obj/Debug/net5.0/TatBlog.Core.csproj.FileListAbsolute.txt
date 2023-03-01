@@ -1,0 +1,12 @@
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\bin\Debug\net5.0\TatBlog.Core.deps.json
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\bin\Debug\net5.0\TatBlog.Core.dll
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\bin\Debug\net5.0\TatBlog.Core.pdb
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\obj\Debug\net5.0\TatBlog.Core.GeneratedMSBuildEditorConfig.editorconfig
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\obj\Debug\net5.0\TatBlog.Core.AssemblyInfoInputs.cache
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\obj\Debug\net5.0\TatBlog.Core.AssemblyInfo.cs
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\obj\Debug\net5.0\TatBlog.Core.csproj.CoreCompileInputs.cache
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\obj\Debug\net5.0\TatBlog.Core.dll
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\obj\Debug\net5.0\ref\TatBlog.Core.dll
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\obj\Debug\net5.0\TatBlog.Core.pdb
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\obj\Debug\net5.0\TatBlog.Core.csproj.AssemblyReference.cache
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Core\obj\Debug\net5.0\refint\TatBlog.Core.dll
