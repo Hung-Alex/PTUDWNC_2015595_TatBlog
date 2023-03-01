@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\TatBlog.Core",
+    "\\TatBlog.Data",
+    "\\TatBlog.Data\\obj",
+    "\\TatBlog.Data\\obj\\Release",
+    "\\TatBlog.Services",
+    "\\TatBlog.Services\\bin",
+    "\\TatBlog.Services\\Blogs",
+    "\\TatBlog.WinApp",
+    "\\TatBlog.WinApp\\bin\\Debug"
+  ],
+  "SelectedNode": "\\TatBlog.Services\\Blogs\\BlogRepository.cs",
+  "PreviewInSolutionExplorer": false
+}

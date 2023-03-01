@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,10 +10,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Blogs\" />
     <Folder Include="Extensions\" />
     <Folder Include="Media\" />
     <Folder Include="Rss\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.25" />
   </ItemGroup>
 
 </Project>

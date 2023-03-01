@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TatBlog.Core.Contracts;
 
+
 namespace TatBlog.Core.Entities
 {
     public class Post : IEntity
