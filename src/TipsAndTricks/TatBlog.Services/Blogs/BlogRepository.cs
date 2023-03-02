@@ -11,9 +11,11 @@ using System.Linq.Dynamic.Core;
 using TatBlog.Core.DTO;
 using TatBlog.Core.Contracts;
 using TatBlog.Services.Extensions;
+using System.Security.Cryptography.X509Certificates;
 
 namespace TatBlog.Services.Blogs
 {
+
     public class BlogRepository : IBlogRepository
     {
         private readonly BlogDbContext _context;
@@ -23,6 +25,8 @@ namespace TatBlog.Services.Blogs
             _context = context;
 
         }
+
+       
 
         public async Task<IList<CategoryItem>> GetCategoriesAsync(bool showOnMenu = false, CancellationToken cancellationToken = default)
         {
@@ -88,6 +92,11 @@ namespace TatBlog.Services.Blogs
             }
             return await postQuery.FirstOrDefaultAsync(cancellationToken);
         }
+        public async Task<Tag> FindTagItemByUrlSlugAsync(string slug, CancellationToken cancellationToken = default)
+        {
+            IQueryable<Tag> tagQuery = _context.Set<Tag>().Where(x => x.UrlSlug==slug);
+            return await tagQuery.FirstOrDefaultAsync(cancellationToken);
+        }
 
         public async Task IncreaseViewCountAsync(int postid, CancellationToken cancellationToken = default)
         {
@@ -99,6 +108,34 @@ namespace TatBlog.Services.Blogs
         {
             return await _context.Set<Post>().AnyAsync(x => x.Id != postid && x.UrlSlug == slug, cancellationToken);
         }
-        
+
+       
+
+        public async Task<IList<TagItem>> GetAllTagssAsync(CancellationToken cancellationToken = default)
+        {
+            var tagQuery = _context.Set<Tag>()
+                                        .Select(x => new TagItem()
+                                        {
+                                            Id = x.Id,
+                                            Name = x.Name,
+                                            UrlSlug = x.UrlSlug,
+                                            Description = x.Description,
+                                            PostCount = x.Posts.Count(p => p.Published)
+                                        });
+            return await tagQuery.ToListAsync(cancellationToken);
+
+        }
+        //Xóa một thẻ theo mã cho trước
+        public async Task<bool> RemoveTagById(int id, CancellationToken cancellationToken = default)
+        {
+            var tagitem = _context.Set<Tag>().Where(x => x.Id == id).ExecuteDelete();
+           
+            return tagitem>0;
+        }
+        //Tìm một chuyên mục (Category) theo tên định danh (slug)
+        public async Task<Category> FindCategoryByUrlSlug(string slug, CancellationToken cancellationToken = default)
+        {
+            return await _context.Set<Category>().Where(cate => cate.UrlSlug == slug).SingleOrDefaultAsync(cancellationToken);
+        }
     }
 }
