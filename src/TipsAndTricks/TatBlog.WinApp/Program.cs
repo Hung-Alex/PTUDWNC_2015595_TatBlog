@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Azure;
+using Microsoft.VisualBasic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TatBlog.Core.Entities;
 using TatBlog.Data.Contexts;
 using TatBlog.Data.Seeders;
 using TatBlog.Services.Blogs;
+using TatBlog.Core.DTO;
 
 namespace TatBlog.WinApp
 {
@@ -12,9 +15,48 @@ namespace TatBlog.WinApp
     {
         static async Task Main(string[] args)
         {
-            var context = new BlogDbContext();
+            var context = new BlogDbContext();//còn 1.t, 1.K và phần 2,3 chưa làm xong
             var seeder = new DataSeeder(context);
             seeder.Initialize();
+            IBlogRepository blogRepo = new BlogRepository(context);
+
+            var result = await blogRepo.GetPostRandomsAsync(7);
+
+            var randomPosts = await blogRepo.GetPostRandomsAsync(3);
+
+            foreach (var post in randomPosts)
+            {
+                Console.WriteLine($"Id: {post.Id}");
+                Console.WriteLine($"Title: {post.Title}");
+                Console.WriteLine($"View Count: {post.ViewCount}");
+                Console.WriteLine($"Posted Date: {post.PostedDate}");
+                Console.WriteLine($"Author: {post.Author}");
+                Console.WriteLine($"Category: {post.Category}");
+                Console.WriteLine();
+            }
+            var tagitems = await blogRepo.GetAllTagssAsync();
+            Console.WriteLine(await blogRepo.RemoveTagById(1));
+            var category = await blogRepo.FindCategoryByUrlSlug(".net-core");
+            Console.WriteLine("{0} {1} {2}", category.Id, category.Name, category.Description);
+            var updateCategory = new Category() { Id = 2, Name = "Test Update category", Description = ".Net Core", UrlSlug = "test-update-category" };
+            Console.WriteLine(await blogRepo.AddOrUpdateCategory(updateCategory));
+            await blogRepo.IsExistsSlug("asd");
+            foreach (var tagitem in tagitems)
+            {
+                Console.WriteLine("ID :{0}", tagitem.Id);
+                Console.WriteLine("Name :{0}", tagitem.Name);
+                Console.WriteLine("UrlSlug :{0}", tagitem.UrlSlug);
+                Console.WriteLine("Description :{0}", tagitem.Description);
+                Console.WriteLine("PostCount :{0}", tagitem.PostCount);
+
+                Console.WriteLine("".PadRight(80, '-'));
+            }
+
+
+            var tag = await blogRepo.FindTagItemByUrlSlugAsync("google-application");
+            Console.WriteLine(tag.Name);
+
+
             var authors = context.Authors.ToList();
             Console.WriteLine("{0,-4}{1,-30}{2,-30}{3,12}", "ID", "Full Name", "Email", "Joined Date");
             foreach (var author in authors)
@@ -41,7 +83,7 @@ namespace TatBlog.WinApp
                 Console.WriteLine("".PadRight(80, '-'));
 
             }
-            IBlogRepository blogRepo = new BlogRepository(context);
+            
             Console.WriteLine("=================================================================");
             var postss = await blogRepo.GetPopularArticleAsync(3);
             foreach (var post in postss)
@@ -63,10 +105,10 @@ namespace TatBlog.WinApp
 
             var paginParams = new PagingParams()
             {
-                PageNumber= 1,
-                PageSize=5,
-                SortColumn="Name",
-                SortOrder="DESC"
+                PageNumber = 1,
+                PageSize = 5,
+                SortColumn = "Name",
+                SortOrder = "DESC"
             };
             var tagsList = await blogRepo.GetPagedTagsAsync(paginParams);
             Console.WriteLine("{0,-5}{1,-50}{2,10}", "ID", "Name", "Count");
@@ -74,6 +116,7 @@ namespace TatBlog.WinApp
             {
                 Console.WriteLine("{0,-5}{1,-50}{2,10}", item.Id, item.Name, item.PostCount);
             }
+
             Console.ReadKey();
         }
 
