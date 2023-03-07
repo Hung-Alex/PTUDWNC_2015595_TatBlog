@@ -9,6 +9,14 @@ namespace TatBlog.Core.DTO
 {
     public  class PostQuey
     {
+        public bool PublishedOnly { get; set; }
+        public bool NotPublished { get; set; }
+        public string CategorySlug { get; set; }
+        public string AuthorSlug { get; set; }
+        public string  TagSlug { get; set; }
+        public string Keyword { get; set; }
+        public string TitleSlug { get; set; }
+        //------------------------------------ phần cũ below
         public int AuthorId { get; set; }
         public int CategoryId { get; set; }
         public string UrlSlug { get; set; }

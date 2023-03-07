@@ -44,5 +44,10 @@ namespace TatBlog.Services.Blogs
         Task<IList<Post>> FindAllPostValidCondition(PostQuey query, CancellationToken cancellationToken=default);
         Task<IPagedList<CategoryItem>> Paginationcategory( IPagingParams pagingParams,CancellationToken cancellationToken = default);
         Task<bool> ConvertStatusPublishedAsync(bool published, CancellationToken cancellationToken = default);
+        Task<IPagedList<Post>> GetPagedPostsAsync(
+        PostQuey condition,
+        int pageNumber = 1,
+        int pageSize = 10,
+        CancellationToken cancellationToken = default);
     }
 }
