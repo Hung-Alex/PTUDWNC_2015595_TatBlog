@@ -1,4 +1,5 @@
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\bin\Debug\net6.0\TatBlog.Data.deps.json
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\bin\Debug\net6.0\TatBlog.Data.runtimeconfig.json
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\bin\Debug\net6.0\TatBlog.Data.dll
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\bin\Debug\net6.0\TatBlog.Data.pdb
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\bin\Debug\net6.0\TatBlog.Core.dll
@@ -12,6 +13,5 @@ X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\obj\Debug\net6.0\TatBl
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\obj\Debug\net6.0\TatBlog.Data.dll
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\obj\Debug\net6.0\refint\TatBlog.Data.dll
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\obj\Debug\net6.0\TatBlog.Data.pdb
-X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\obj\Debug\net6.0\ref\TatBlog.Data.dll
-X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\bin\Debug\net6.0\TatBlog.Data.runtimeconfig.json
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\obj\Debug\net6.0\TatBlog.Data.genruntimeconfig.cache
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Data\obj\Debug\net6.0\ref\TatBlog.Data.dll

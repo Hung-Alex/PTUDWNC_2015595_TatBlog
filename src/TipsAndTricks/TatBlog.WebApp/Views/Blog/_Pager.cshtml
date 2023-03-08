@@ -1,0 +1,49 @@
+﻿@model IPagedList<Post>
+@{
+    int pageNext = Model.PageNumber + 1;
+    int pagePrevious = Model.PageNumber - 1;
+
+
+
+}
+<h1>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @if (Model.IsFirstPage)
+            {
+
+                <li class="page-item disabled">
+                    <a class="page-link" aria-label="Previous" asp-route-p="@pagePrevious" asp-action="Index" asp-controller="Blog">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            }
+            else
+            {
+            <li class="page-item">
+                <a class="page-link" aria-label="Previous" asp-route-p="@pagePrevious" asp-action="Index" asp-controller="Blog">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            }
+            @if (Model.IsLastPage)
+            {
+                <li class="page-item disabled">
+                    <a class="page-link" aria-label="Next" asp-route-p="@pageNext" asp-action="Index" asp-controller="Blog">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next" asp-route-p="@pageNext" asp-action="Index" asp-controller="Blog">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+    
+     
+  </ul>
+</nav>
+</h1>

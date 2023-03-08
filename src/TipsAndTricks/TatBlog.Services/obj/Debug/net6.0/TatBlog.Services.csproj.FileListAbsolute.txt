@@ -1,8 +1,3 @@
-X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.csproj.AssemblyReference.cache
-X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.GeneratedMSBuildEditorConfig.editorconfig
-X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.AssemblyInfoInputs.cache
-X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.AssemblyInfo.cs
-X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.csproj.CoreCompileInputs.cache
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\bin\Debug\net6.0\TatBlog.Services.deps.json
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\bin\Debug\net6.0\TatBlog.Services.dll
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\bin\Debug\net6.0\TatBlog.Services.pdb
@@ -10,6 +5,11 @@ X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\bin\Debug\net6.0\T
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\bin\Debug\net6.0\TatBlog.Data.dll
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\bin\Debug\net6.0\TatBlog.Core.pdb
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\bin\Debug\net6.0\TatBlog.Data.pdb
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.csproj.AssemblyReference.cache
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.GeneratedMSBuildEditorConfig.editorconfig
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.AssemblyInfoInputs.cache
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.AssemblyInfo.cs
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.csproj.CoreCompileInputs.cache
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.csproj.CopyComplete
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\TatBlog.Services.dll
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.Services\obj\Debug\net6.0\refint\TatBlog.Services.dll
