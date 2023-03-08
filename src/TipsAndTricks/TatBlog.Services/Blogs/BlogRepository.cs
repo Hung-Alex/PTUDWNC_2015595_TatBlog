@@ -264,6 +264,48 @@ namespace TatBlog.Services.Blogs
         
             
         }
+       
+
+            public async Task<IList<Post>> GetPostRandomsAsync(int numPosts, CancellationToken cancellationToken = default)
+        {
+            
+                var random = new Random();
+                return await _context.Set<Post>().OrderBy(x=>Guid.NewGuid()).Take(numPosts).ToListAsync(cancellationToken);
+            
+        }
+
+     
+
+        public async Task<IPagedList<CategoryItem>> Paginationcategory(IPagingParams pagingParams, CancellationToken cancellationToken)
+        {
+            var tagQuery = _context.Set<Category>()
+                                     .Select(x => new CategoryItem()
+                                     {
+                                         Id = x.Id,
+                                         Name = x.Name,
+                                         UrlSlug = x.UrlSlug,
+                                         Description = x.Description,
+                                         ShowOnMenu = x.ShowOnMenu,
+                                         PostCount = x.Posts.Count(p => p.Published)
+                                     });
+            return await tagQuery.ToPagedListAsync(pagingParams, cancellationToken);
+        }
+
+        public async Task<bool> ConvertStatusPublishedAsync(bool published, CancellationToken cancellationToken = default)
+        {
+            // Tìm thẻ theo ID
+            var post = await _context.Set<Post>()
+                .FirstOrDefaultAsync(p => p.Published == published, cancellationToken);
+            if (post.Published == true)
+            {
+                post.Published = false;
+            }
+            else
+            {
+                post.Published = true;
+            }
+            return true;
+        }
         private IQueryable<Post> FilterPosts(PostQuey condition)
         {
             IQueryable<Post> posts = _context.Set<Post>()
@@ -332,48 +374,6 @@ namespace TatBlog.Services.Blogs
 
             return posts;
         }
-
-            public async Task<IList<Post>> GetPostRandomsAsync(int numPosts, CancellationToken cancellationToken = default)
-        {
-            
-                var random = new Random();
-                return await _context.Set<Post>().OrderBy(x=>Guid.NewGuid()).Take(numPosts).ToListAsync(cancellationToken);
-            
-        }
-
-     
-
-        public async Task<IPagedList<CategoryItem>> Paginationcategory(IPagingParams pagingParams, CancellationToken cancellationToken)
-        {
-            var tagQuery = _context.Set<Category>()
-                                     .Select(x => new CategoryItem()
-                                     {
-                                         Id = x.Id,
-                                         Name = x.Name,
-                                         UrlSlug = x.UrlSlug,
-                                         Description = x.Description,
-                                         ShowOnMenu = x.ShowOnMenu,
-                                         PostCount = x.Posts.Count(p => p.Published)
-                                     });
-            return await tagQuery.ToPagedListAsync(pagingParams, cancellationToken);
-        }
-
-        public async Task<bool> ConvertStatusPublishedAsync(bool published, CancellationToken cancellationToken = default)
-        {
-            // Tìm thẻ theo ID
-            var post = await _context.Set<Post>()
-                .FirstOrDefaultAsync(p => p.Published == published, cancellationToken);
-            if (post.Published == true)
-            {
-                post.Published = false;
-            }
-            else
-            {
-                post.Published = true;
-            }
-            return true;
-        }
-
         public async Task<IPagedList<Post>> GetPagedPostsAsync(PostQuey condition, int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
             return await FilterPosts(condition).ToPagedListAsync(

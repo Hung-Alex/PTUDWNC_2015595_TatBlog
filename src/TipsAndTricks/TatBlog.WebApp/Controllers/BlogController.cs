@@ -4,6 +4,7 @@ using System;
 using TatBlog.Services.Blogs;
 using TatBlog.Core.Contracts;
 using TatBlog.Core.Entities;
+using TatBlog.Core.DTO;
 
 namespace TatBlog.WebApp.Controllers
 {
@@ -16,11 +17,23 @@ namespace TatBlog.WebApp.Controllers
             
             _blogRepository = blogRepository;
         } 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery(Name ="k")]string keyword=null,
+                                                [FromQuery(Name = "p")] int pageNumber=1,
+                                                [FromQuery(Name = "ps")] int pageSize =10)
         {
-            IPagedList<Post> posts = await _blogRepository.GetPagedPostsAsync(new Core.DTO.PostQuey() { PublishedOnly=true});
+            //tao doi tuong cha cac dieu kien truy van
+            var postQuery = new PostQuey()
+            {
+                //chi layu nhung bai viet co trang thai published
+                PublishedOnly=true,
+
+                //tim bai viet theo tu khoa
+                Keyword=keyword,
+            };
+            ViewBag.PostQuery = postQuery;
+            var postsList = await _blogRepository.GetPagedPostsAsync(postQuery,pageNumber,pageSize);
             
-            return View("Index",posts);
+            return View("Index",postsList);
         }
         public IActionResult About()
         {

@@ -13,7 +13,7 @@ namespace TatBlog.Core.Contracts
 
         int TotalItemCount { get; }
 
-        int PageIndex { get; }
+        int PageIndex { get; } 
 
         int PageNumber { get; }
 
