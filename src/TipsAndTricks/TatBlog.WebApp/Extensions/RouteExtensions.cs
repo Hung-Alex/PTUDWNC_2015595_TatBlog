@@ -11,7 +11,7 @@ namespace TatBlog.WebApp.Extensions
             endpoints.MapControllerRoute(
                 name: "posts-by-category",
                 pattern: "blog/category/{slug}",
-                defaults: new { controller = "Blog", action = "Category" });
+               defaults: new { controller = "Blog", action = "Category" });
 
             endpoints.MapControllerRoute(
               name: "posts-by-tag",
@@ -19,9 +19,16 @@ namespace TatBlog.WebApp.Extensions
               defaults: new { controller = "Blog", action = "Tag" });
 
             endpoints.MapControllerRoute(
-              name: "single-post",
-              pattern: "blog/post/{year:int}/{month:int}/{day:int}/{slug}",
-              defaults: new { controller = "Blog", action = "Post" });
+              name: "blog-post-author",
+              pattern: "blog/author/{slug}",
+              defaults: new { controller = "Blog", action = "Author" });
+
+            endpoints.MapControllerRoute(
+             name: "single-post",
+             pattern: "blog/post/{year:int}/{month:int}/{day:int}/{slug}",
+             defaults: new { controller = "Blog", action = "Post" });
+
+            //-------------------------
 
             endpoints.MapControllerRoute(
               name: "default",

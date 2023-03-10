@@ -16,6 +16,7 @@ namespace TatBlog.Core.DTO
         public string  TagSlug { get; set; }
         public string Keyword { get; set; }
         public string TitleSlug { get; set; }
+        public int Day { get; set; }
         //------------------------------------ phần cũ below
         public int AuthorId { get; set; }
         public int CategoryId { get; set; }

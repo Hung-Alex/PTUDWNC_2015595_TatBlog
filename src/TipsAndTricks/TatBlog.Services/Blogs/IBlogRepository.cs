@@ -40,6 +40,7 @@ namespace TatBlog.Services.Blogs
         thêm một đầu vào là Func<IQueryable<Post>, IQueryable<T>> mapper
         để ánh xạ các đối tượng Post thành các đối tượng T theo yêu cầu
             */
+        Task<Post> GetPostAsync(PostQuey query, CancellationToken cancellationToken=default);
         Task<IList<Post>> GetPostRandomsAsync(int numPosts, CancellationToken cancellationToken = default);
         Task<IList<Post>> FindAllPostValidCondition(PostQuey query, CancellationToken cancellationToken=default);
         Task<IPagedList<CategoryItem>> Paginationcategory( IPagingParams pagingParams,CancellationToken cancellationToken = default);

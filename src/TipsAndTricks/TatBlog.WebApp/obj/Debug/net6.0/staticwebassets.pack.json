@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\images\\image_1.jpg"
     },
     {
+      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\images\\img_about.jpg",
+      "PackagePath": "staticwebassets\\images\\img_about.jpg"
+    },
+    {
       "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\js\\main.js",
       "PackagePath": "staticwebassets\\js\\main.js"
     },
