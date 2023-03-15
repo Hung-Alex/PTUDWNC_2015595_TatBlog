@@ -112,13 +112,19 @@
         "fonts/fontawesome-webfont.woff2",
         "fonts/FontAwesome.otf"
       ]
+    },
+    {
+      "library": "bootstrap@5.1.3",
+      "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "library": "speakingurl@14.0.1",
+      "destination": "wwwroot/speakingurl/",
+      "files": [
+        "speakingurl.min.js",
+        "README.md",
+        "LICENSE"
+      ]
     }
-    
-  ,
-{
-  "provider": "unpkg",
-  "library": "bootstrap@5.1.3",
-  "destination": "wwwroot/lib/bootstrap/"
-}
-]
+  ]
 }

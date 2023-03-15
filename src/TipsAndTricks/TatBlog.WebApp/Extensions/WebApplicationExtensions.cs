@@ -1,8 +1,11 @@
 ﻿using Azure.Core;
 using Microsoft.EntityFrameworkCore;
+using NLog.Web;
 using TatBlog.Data.Contexts;
 using TatBlog.Data.Seeders;
 using TatBlog.Services.Blogs;
+using TatBlog.Services.Media;
+using TatBlog.WebApp.Middlewares;
 
 namespace TatBlog.WebApp.Extensions
 {
@@ -21,6 +24,15 @@ namespace TatBlog.WebApp.Extensions
             builder.Services.AddDbContext<BlogDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IBlogRepository, BlogRepository>();
             builder.Services.AddScoped<IDataSeeder, DataSeeder>();
+            builder.Services.AddScoped<IMediaManager,LocalFileSystemMediaManager>();
+
+            return builder;
+        }
+        // Cấu hình việc sử dụng NLog
+        public static WebApplicationBuilder ConfigureNLog(this WebApplicationBuilder builder)
+        {
+            builder.Logging.ClearProviders();
+            builder.Host.UseNLog();
 
             return builder;
         }
@@ -46,8 +58,10 @@ namespace TatBlog.WebApp.Extensions
             //them middware de lua chon enpoint phu hop nhat
             //de xu ly 1 http request
             app.UseRouting();
+            app.UseMiddleware<UserActivityMiddleware>();
             return app;
         }
+
         //them du lieu mau vao CSDL
         public static IApplicationBuilder UseDataSeeder(this IApplicationBuilder app) 
         {

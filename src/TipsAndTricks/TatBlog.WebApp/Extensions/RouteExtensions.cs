@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using TatBlog.WebApp.Areas.Admin.Controllers;
 
 namespace TatBlog.WebApp.Extensions
 {
@@ -33,6 +34,14 @@ namespace TatBlog.WebApp.Extensions
             endpoints.MapControllerRoute(
               name: "default",
             pattern: "{controller=Blog}/{action=Index}/{id?}");
+
+            //--------Admin-----
+            endpoints.MapControllerRoute(
+                 name: "admin-area",
+                 pattern: "admin/{controller=Dashboard}/{action=Index}/{id?}",
+                 defaults: new { area = "Admin" }
+                 );
+
 
 
             return endpoints;
