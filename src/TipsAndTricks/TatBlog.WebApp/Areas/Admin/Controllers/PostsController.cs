@@ -14,14 +14,14 @@ using TatBlog.WebApp.Areas.Admin.Models;
 
 namespace TatBlog.WebApp.Areas.Admin.Controllers
 {
-    
+
     public class PostsController : Controller
     {
         private readonly IBlogRepository _blogRepository;
         private readonly IMapper _mapper;
         private readonly IMediaManager _mediaManager;
         private readonly ILogger<PostsController> _logger;
-        public PostsController(ILogger<PostsController> logger,IBlogRepository blogRepository,IMapper mapper,IMediaManager mediaManager)
+        public PostsController(ILogger<PostsController> logger, IBlogRepository blogRepository, IMapper mapper, IMediaManager mediaManager)
         {
             _logger = logger;
             _mapper = mapper;
@@ -30,7 +30,7 @@ namespace TatBlog.WebApp.Areas.Admin.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> Index(
-            
+
             PostFilterModel model,
             [FromQuery(Name = "k")] string keyword = null,
             [FromQuery(Name = "p")] int pageNumber = 1,
@@ -38,17 +38,39 @@ namespace TatBlog.WebApp.Areas.Admin.Controllers
             )
         {
             var postQuery = _mapper.Map<PostQuey>(model);
+            postQuery.NotPublished = model.Published;
 
             ViewBag.PostsList = await _blogRepository
                 .GetPagedPostsAsync(postQuery, pageNumber, 10);
             _logger.LogInformation("Chuẩn bị dữ liệu cho ViewModel");
 
             await PopulatePostsFitlterModelAsync(model);
-            
 
-            
-            return View("Index",model);
+
+
+            return View("Index", model);
         }
+
+                
+
+        [HttpPost]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            var changestatusPublished = await _blogRepository.DeletePost(id);
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePublished( int id)
+        {
+            var changestatusPublished = await _blogRepository.TogglePublishedFlagAsync(id);
+            
+            return RedirectToAction("Index");
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Edit([FromServices]
@@ -123,6 +145,12 @@ namespace TatBlog.WebApp.Areas.Admin.Controllers
         {
             var categories=await _blogRepository.GetCategoriesAsync();
             var authors=await _blogRepository.GetAuthorsAsync();
+            var publishedlist=new List<bool>() { true,false};
+            model.PublishedList = publishedlist.Select(a => new SelectListItem()
+            {
+                Text = a.ToString(),
+                Value = a.ToString(),
+            }) ;
             model.AuthorList=authors.Select(a => new SelectListItem()
             {
                 Text = a.FullName,

@@ -65,6 +65,19 @@
             </option>
         </select>
     </div>
+    <div class="col-auto">
+        <label class="visually-hidden"
+               asp-for="Published"></label>
+
+        <select class="form-select"
+                asp-for="Published"
+                asp-items="Model.PublishedList">
+
+            <option value="" selected>
+                -- Chọn Published --
+            </option>
+        </select>
+    </div>
 
     <div class="col-auto">
         <button type="submit" class="btn btn-primary">
@@ -78,5 +91,18 @@
             Thêm mới
         </a>
     </div>
+    <div class="col-auto">
+       
+            <a asp-area="Admin"
+               asp-controller="Posts"
+               asp-action="Index"
+               class="btn btn-success"
+            >Bỏ Lọc
+        </a>
+       
+
+       
+    </div>
+   
 
 </form>

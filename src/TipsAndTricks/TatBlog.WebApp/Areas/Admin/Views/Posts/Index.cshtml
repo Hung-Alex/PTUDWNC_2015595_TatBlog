@@ -43,8 +43,25 @@
                         @post.Category.Name
                     </td>
                     <td>
-                        @(post.Published ? "Có" : "Không")
+                        <form
+                            method="post"
+                            asp-area="Admin"
+                            asp-action="ChangePublished">
+                            <input type="hidden" name="id" value="@post.Id" />
+                            <select class="form-select" onchange="this.form.submit()">
+                                <option value="" selected="@(post.Published ? true : false)">Có</option>
+                                <option value="" selected="@(post.Published ? false : true)">Không</option>
+                            </select>
+                           
+                        </form>
                        
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <button type="button" value="@post.Id" class="btn btn-danger" data-bs-target="#deleteModal" data-bs-toggle="modal">
+                                Xóa
+                            </button>
+                        </div>
                     </td>
                 </tr>
             }
@@ -56,3 +73,73 @@ else
     <h1 class="text-danger">Không tìm thấy bài viết nào</h1>
 }
 <partial name="Pager" model="@ViewBag.PostsList" />
+
+
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Xóa bài viết</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Bạn có thực sự muốn xóa bài viết này không?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" id="btn-delete-post" class="btn btn-danger">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="post"
+      name="delete-post-form"
+      enctype="multipart/form-data"
+      asp-area="Admin"
+      asp-controller="Posts"
+      asp-action="DeletePost">
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var postId;
+        var deleteForm = document.forms['delete-post-form'];
+        var btnDeletePost = document.getElementById('btn-delete-post');
+        // When dialog confirm clicked
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            postId = button.val();
+        });
+
+        // When delete post btn clicked
+        btnDeletePost.onclick = function () {
+            deleteForm.action += "/" + postId;
+            deleteForm.submit();
+        }
+    });
+</script>
