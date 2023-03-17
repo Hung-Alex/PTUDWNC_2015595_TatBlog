@@ -19,7 +19,9 @@ namespace TatBlog.WebApp.Areas.Admin.Models
         [DisplayName("Tháng")]
 
         public int? Month { get; set; }
+        public bool Published { get; set; }
         public IEnumerable<SelectListItem> AuthorList { get; set; }
+        public IEnumerable<SelectListItem> PublishedList { get; set; }
         public IEnumerable<SelectListItem> CategoryList { get; set; }
 
         public IEnumerable<SelectListItem> MonthList { get; set; }

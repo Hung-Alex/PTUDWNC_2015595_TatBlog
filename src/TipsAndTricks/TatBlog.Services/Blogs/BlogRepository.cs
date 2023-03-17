@@ -355,9 +355,20 @@ namespace TatBlog.Services.Blogs
         
             
         }
-       
 
-            public async Task<IList<Post>> GetPostRandomsAsync(int numPosts, CancellationToken cancellationToken = default)
+        public async Task<bool> TogglePublishedFlagAsync(
+    int postId, CancellationToken cancellationToken = default)
+        {
+            var post = await _context.Set<Post>().FindAsync(postId);
+
+            if (post is null) return false;
+
+            post.Published = !post.Published;
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return post.Published;
+        }
+        public async Task<IList<Post>> GetPostRandomsAsync(int numPosts, CancellationToken cancellationToken = default)
         {
             
                 var random = new Random();
@@ -571,5 +582,11 @@ namespace TatBlog.Services.Blogs
 
 		return post;
 	}
+
+        public async  Task<bool> DeletePost(int id, CancellationToken cancellationToken = default)
+        {
+            return await _context.Set<Post>().Where(x=>x.Id==id).ExecuteDeleteAsync(cancellationToken)>0;
+            
+        }
     }
 }
