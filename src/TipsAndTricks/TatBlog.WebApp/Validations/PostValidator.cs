@@ -32,13 +32,13 @@ namespace TatBlog.WebApp.Validations
             .MaximumLength(1000)
             .WithMessage("Meta dài tối đa '{MaxLength}'");
 
-            RuleFor(p => p.urlslug)
+            RuleFor(p => p.UrlSlug)
             .NotEmpty()
             .WithMessage("Slug của bài viết không được để trống")
             .MaximumLength(1000)
             .WithMessage("Slug dài tối đa '{MaxLength}'");
 
-            RuleFor(p => p.urlslug)
+            RuleFor(p => p.UrlSlug)
             .MustAsync(async (postModel, slug, cancellationToken) => !await _blogRepository.IsPostSlugExistedAsync(postModel.Id, slug, cancellationToken))
             .WithMessage("Slug '{PropertyValue}' đã được sử dụng");
 

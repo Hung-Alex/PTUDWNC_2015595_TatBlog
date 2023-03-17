@@ -1,0 +1,50 @@
+﻿
+@{
+    
+    int pageNext = ViewBag.PostsList.PageNumber + 1;
+    int pagePrevious = ViewBag.PostsList.PageNumber - 1;
+
+
+
+}
+<h1>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @if (ViewBag.PostsList.IsFirstPage)
+            {
+
+                <li class="page-item disabled">
+                    <a class="page-link" aria-label="Previous" asp-area="Admin" asp-route-p="@pagePrevious" asp-action="Index" asp-controller="Posts">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous" asp-area="Admin" asp-route-p="@pagePrevious" asp-action="Index" asp-controller="Posts">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @if (ViewBag.PostsList.IsLastPage)
+            {
+                <li class="page-item disabled">
+                    <a class="page-link" aria-label="Next" asp-area="Admin" asp-route-p="@pageNext" asp-action="Index" asp-controller="Posts">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next" asp-area="Admin" asp-route-p="@pageNext" asp-action="Index" asp-controller="Posts">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+
+
+        </ul>
+    </nav>
+</h1>

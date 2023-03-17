@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -28,33 +29,61 @@ namespace TatBlog.WebApp.Areas.Admin.Controllers
             _mediaManager = mediaManager;
         }
         [HttpGet]
-        public async Task<IActionResult> Index(PostFilterModel model)
+        public async Task<IActionResult> Index(
+            
+            PostFilterModel model,
+            [FromQuery(Name = "k")] string keyword = null,
+            [FromQuery(Name = "p")] int pageNumber = 1,
+            [FromQuery(Name = "ps")] int pageSize = 10
+            )
         {
             var postQuery = _mapper.Map<PostQuey>(model);
 
             ViewBag.PostsList = await _blogRepository
-                .GetPagedPostsAsync(postQuery, 1, 10);
+                .GetPagedPostsAsync(postQuery, pageNumber, 10);
             _logger.LogInformation("Chuẩn bị dữ liệu cho ViewModel");
 
             await PopulatePostsFitlterModelAsync(model);
+            
 
             
             return View("Index",model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(
+        public async Task<IActionResult> Edit([FromServices]
              IValidator<PostEditModel> postValidator,PostEditModel model)
         {
+
+            //slug null
             var validationResult=await postValidator.ValidateAsync(model);
+            if (!validationResult.IsValid)
+            {
+                validationResult.AddToModelState(ModelState);
+            }
             if (!ModelState.IsValid)
             {
                 await PopulatePostsEditModelAsync(model);
                 return View(model);
             }
+
             var post = model.Id > 0
               ? await _blogRepository.GetPostByIdAsync(model.Id)
               : null;
+
+            if (post == null)
+            {
+                post = _mapper.Map<Post>(model);
+                post.Id = 0;
+                post.PostedDate = DateTime.Now;
+            }
+            else
+            {
+                _mapper.Map(model, post);
+                post.Category = null;
+                post.PostedDate = DateTime.Now;
+            }
+
             // Nếu người dùng có upload hình ảnh minh họa cho bài viết
             if (model.ImageFile?.Length > 0)
             {
@@ -68,23 +97,15 @@ namespace TatBlog.WebApp.Areas.Admin.Controllers
                     post.ImageUrl = newImagePath;
                 }
             }
-            if (post!=null)
-            {
-                post = _mapper.Map<Post>(model);
-                post.Id= 0;
-                post.PostedDate = DateTime.Now;
-            }
-            else
-            {
-                _mapper.Map(model,post);
-                post.Category = null;
-                post.PostedDate = DateTime.Now;
-            }
+
             await _blogRepository.CreateOrUpdatePostAsync(post,model.GetSelectedTags());
+
+
             return RedirectToAction(nameof(Index));
 
         }
-            [HttpGet]
+
+        [HttpGet]
         public async Task<IActionResult> Edit(int id = 0)
         {
            
@@ -95,7 +116,7 @@ namespace TatBlog.WebApp.Areas.Admin.Controllers
             var model = post == null
             ? new PostEditModel()
             : _mapper.Map<PostEditModel>(post);
-            
+            await PopulatePostsEditModelAsync(model);
             return View(model);
         }
         public async Task PopulatePostsFitlterModelAsync(PostFilterModel model)
@@ -129,7 +150,7 @@ namespace TatBlog.WebApp.Areas.Admin.Controllers
             });
         }
         [HttpPost]
-        public async Task<IActionResult> VeryfyPostSlug(int id,string urlSlug)
+        public async Task<IActionResult> VerifyPostSlug(int id,string urlSlug)
         {
             var slugExisted = await _blogRepository.IsPostSlugExistedAsync(id, urlSlug);
             return slugExisted?Json($"slug '{urlSlug}'  đã được sử dụng"):Json(true);

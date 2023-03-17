@@ -13,7 +13,7 @@
             {
 
                 <li class="page-item disabled">
-                    <a class="page-link" aria-label="Previous" asp-route-p="@pagePrevious" asp-action="Index" asp-controller="Blog">
+                    <a class="page-link" aria-label="Previous" asp-area="" asp-route-p="@pagePrevious" asp-action="Index" asp-controller="Blog">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -21,7 +21,7 @@
             else
             {
             <li class="page-item">
-                <a class="page-link" aria-label="Previous" asp-route-p="@pagePrevious" asp-action="Index" asp-controller="Blog">
+                <a class="page-link" aria-label="Previous"  asp-area="" asp-route-p="@pagePrevious" asp-action="Index" asp-controller="Blog">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -29,7 +29,7 @@
             @if (Model.IsLastPage)
             {
                 <li class="page-item disabled">
-                    <a class="page-link" aria-label="Next" asp-route-p="@pageNext" asp-action="Index" asp-controller="Blog">
+                    <a class="page-link" aria-label="Next" asp-area="" asp-route-p="@pageNext" asp-action="Index" asp-controller="Blog">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -37,7 +37,7 @@
             else
             {
                 <li class="page-item">
-                    <a class="page-link" aria-label="Next" asp-route-p="@pageNext" asp-action="Index" asp-controller="Blog">
+                    <a class="page-link" aria-label="Next" asp-area="" asp-route-p="@pageNext" asp-action="Index" asp-controller="Blog">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>

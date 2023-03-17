@@ -1121,16 +1121,24 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
     },
     {
-      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\speakingurl\\LICENSE",
-      "PackagePath": "staticwebassets\\speakingurl"
+      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\lib\\speakingurl\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\speakingurl"
     },
     {
-      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\speakingurl\\README.md",
-      "PackagePath": "staticwebassets\\speakingurl\\README.md"
+      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\lib\\speakingurl\\README.md",
+      "PackagePath": "staticwebassets\\lib\\speakingurl\\README.md"
     },
     {
-      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\speakingurl\\speakingurl.min.js",
-      "PackagePath": "staticwebassets\\speakingurl\\speakingurl.min.js"
+      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\lib\\speakingurl\\speakingurl.min.js",
+      "PackagePath": "staticwebassets\\lib\\speakingurl\\speakingurl.min.js"
+    },
+    {
+      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\uploads\\pictures\\6ecba905b8b445eda0c4aa62e451b0ea.png",
+      "PackagePath": "staticwebassets\\uploads\\pictures\\6ecba905b8b445eda0c4aa62e451b0ea.png"
+    },
+    {
+      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\uploads\\pictures\\f0f98cc906a2469d8e559cdebf3a074b.png",
+      "PackagePath": "staticwebassets\\uploads\\pictures\\f0f98cc906a2469d8e559cdebf3a074b.png"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.TatBlog.WebApp.Microsoft.AspNetCore.StaticWebAssets.props",

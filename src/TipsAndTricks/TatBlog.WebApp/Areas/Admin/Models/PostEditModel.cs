@@ -8,36 +8,40 @@ namespace TatBlog.WebApp.Areas.Admin.Models
     public class PostEditModel
     {
         public int Id { get; set; }
+
+
         [DisplayName("Tiêu đề")]
-       
         public string Title { get; set; }
 
+
         [DisplayName("Giới thiệu")]
-     
         public string ShortDescription { get; set; }
+
         [DisplayName("Nội dung")]
-        
         public string Description { get; set; }
+
         [DisplayName("Metadata")]
-      
         public string Meta { get; set; }
 
-        [DisplayName("slug")]
-        [Remote("VerifyPostSlug", "Posts", "Admin",
-                HttpMethod = "POST", AdditionalFields = "Id")]
-       
-        public string urlslug { get; set; }
+        [DisplayName("Slug")]
+        [Remote("VerifyPostSlug", "Posts", "Admin",HttpMethod = "POST", AdditionalFields = "Id")]
+        public string UrlSlug { get; set; }
+
         [DisplayName("Chọn hình ảnh")]
         public IFormFile ImageFile { get; set; }
+
         [DisplayName("Hình hiện tại")]
         public string ImageUrl { get; set; }
-        [DisplayName("Xuất bản ngay")]
 
+        [DisplayName("Xuất bản ngay")]
         public bool Published { get; set; }
-        [DisplayName("Chủ đề")][Required(ErrorMessage = "Bạn chưa chọn chủ đề")] public int CategoryId { get; set; }
+
+        [DisplayName("Chủ đề")][Required(ErrorMessage = "Bạn chưa chọn chủ đề")]
+        public int CategoryId { get; set; }
 
         [DisplayName("Tác giả")]
         public int AuthorId { get; set; }
+
         [DisplayName("Từ khóa (mỗi từ 1 dòng)")]
         public string SelectedTags { get; set; }
 

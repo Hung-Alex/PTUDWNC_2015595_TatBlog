@@ -11,12 +11,13 @@ namespace TatBlog.WebApp.Mapsters
         {
             config.NewConfig<Post, PostItem>()
                 .Map(dest => dest.CategoryName, src => src.Category.Name)
+                .Map(dest => dest.AuthorName, src => src.Author.FullName)
                 .Map(dest => dest.Tags, src => src.Tags.Select(tag => tag.Name));
 
             config.NewConfig<PostFilterModel, PostQuey>()
                 .Map(dest => dest.PublishedOnly, src => false);
 
-            config.NewConfig<Post, PostEditModel>()
+            config.NewConfig<PostEditModel, Post>()
                 .Ignore(dest => dest.Id)
                 .Ignore(dest => dest.ImageUrl);
             config.NewConfig<Post, PostItem>()
