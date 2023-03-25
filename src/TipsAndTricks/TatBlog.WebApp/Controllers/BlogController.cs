@@ -48,6 +48,19 @@ namespace TatBlog.WebApp.Controllers
 
             return View("Index", postsList);
         }
+        public async Task<IActionResult> Month([FromRoute(Name = "month")] int month = 0)
+        {
+            var postQuery = new PostQuey()
+            {
+                Month = month,
+                Year = DateTime.Now.Year
+
+            };
+            ViewBag.PostQuery = postQuery;
+            var postsList = await _blogRepository.GetPagedPostsAsync(postQuery);
+
+            return View("Index", postsList);
+        }
         public async Task<IActionResult> Author([FromRoute(Name = "slug")] string slug = null)
         {
             var postQuery = new PostQuey()

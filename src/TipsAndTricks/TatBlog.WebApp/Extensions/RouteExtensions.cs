@@ -23,11 +23,19 @@ namespace TatBlog.WebApp.Extensions
               name: "blog-post-author",
               pattern: "blog/author/{slug}",
               defaults: new { controller = "Blog", action = "Author" });
+            endpoints.MapControllerRoute(
+             name: "blog-Month-post",
+             pattern: "blog/Month/{month}/{year}",
+             defaults: new { controller = "Blog", action = "Month" });
 
             endpoints.MapControllerRoute(
              name: "single-post",
              pattern: "blog/post/{year:int}/{month:int}/{day:int}/{slug}",
              defaults: new { controller = "Blog", action = "Post" });
+            endpoints.MapControllerRoute(
+             name: "newsletter-Unscribe-email",
+             pattern: "Newsletter/Unsubscribe/{email}",
+             defaults: new { controller = "Newsletter", action = "Newsletter" });
 
             //--------Admin-----
             endpoints.MapControllerRoute(

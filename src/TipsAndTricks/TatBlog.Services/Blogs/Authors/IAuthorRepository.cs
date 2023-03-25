@@ -23,6 +23,8 @@ f. Tìm danh sách N tác giả có nhiều bài viết nhất. N là tham số 
     {
         Task<Author> FindAuthorbyId(int id,CancellationToken cancellationToken = default);
         Task<Author> FindAuthorbyslugs(string urlslug,CancellationToken cancellationToken = default);
+        Task<IList<Author>> GetFourPopulationAuthor(CancellationToken cancellationToken=default);
+        
         
     }
 }

@@ -1,0 +1,8 @@
+﻿@model IList<Post>
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <partial name="_PostList" model="@item" />
+    }
+</div>

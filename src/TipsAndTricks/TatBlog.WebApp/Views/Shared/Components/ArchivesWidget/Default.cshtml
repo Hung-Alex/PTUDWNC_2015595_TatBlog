@@ -1,0 +1,24 @@
+﻿@using System.Globalization
+@model IDictionary<int,CountYear>
+
+<div class="list-group">
+    
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item">
+            <a class="text-decoration-none"
+               class="fs-5"
+                asp-area=""
+                asp-controller="Blog"
+           asp-action="Month"
+           asp-route-month="@item.Key"
+           asp-route-year="@item.Value.Year"
+          
+               title="@item.Key">   
+
+                @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(@item.Key) @item.Value.Year
+                <span>(@item.Value.Count)</span>
+            </a>
+        </li>
+    }
+</div>
