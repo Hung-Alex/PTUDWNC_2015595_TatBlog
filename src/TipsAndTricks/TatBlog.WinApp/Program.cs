@@ -8,6 +8,7 @@ using TatBlog.Data.Contexts;
 using TatBlog.Data.Seeders;
 using TatBlog.Services.Blogs;
 using TatBlog.Core.DTO;
+using TatBlog.Services.Blogs.Authors;
 
 namespace TatBlog.WinApp
 {
@@ -15,6 +16,7 @@ namespace TatBlog.WinApp
     {
         static async Task Main(string[] args)
         {
+            
             //var context = new BlogDbContext();//còn 1.t, 1.K và phần 2,3 chưa làm xong
             //var seeder = new DataSeeder(context);
             //seeder.Initialize();

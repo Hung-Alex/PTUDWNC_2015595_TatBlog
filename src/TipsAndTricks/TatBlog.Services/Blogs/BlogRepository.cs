@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore.Query;
 using System.Reflection.Metadata.Ecma335;
 using Microsoft.Identity.Client;
 using System.Net.WebSockets;
+using Microsoft.VisualBasic;
 
 namespace TatBlog.Services.Blogs
 {
@@ -372,7 +373,11 @@ namespace TatBlog.Services.Blogs
         {
             
                 var random = new Random();
-                return await _context.Set<Post>().OrderBy(x=>Guid.NewGuid()).Take(numPosts).ToListAsync(cancellationToken);
+            IQueryable<Post> posts = _context.Set<Post>()
+             .Include(x => x.Category)
+             .Include(x => x.Author)
+             .Include(x => x.Tags);
+            return await posts.OrderBy(x=>Guid.NewGuid()).Take(numPosts).ToListAsync(cancellationToken);
             
         }
 
@@ -588,5 +593,62 @@ namespace TatBlog.Services.Blogs
             return await _context.Set<Post>().Where(x=>x.Id==id).ExecuteDeleteAsync(cancellationToken)>0;
             
         }
+
+        public async Task<IList<Post>> GetFeaturedPostToTakeNumber(int number, CancellationToken cancellationToken)
+        {
+            IQueryable<Post> postQuery = _context.Set<Post>()
+                .Include(x => x.Category)
+                .Include(x => x.Author)
+                .Include(x => x.Tags);
+            postQuery=postQuery.OrderByDescending(x => x.ViewCount).Take(number);
+            return await postQuery.ToListAsync(cancellationToken);
+         
+        }
+
+        public async Task<IList<Tag>> GetAllTagAsync(CancellationToken CancellationToken = default)
+        {
+            return await _context.Set<Tag>().ToListAsync();  
+        }
+
+        public async Task<IDictionary<int, CountYear>> GetAllMonthOfPosts(CancellationToken cancellationToken = default)
+        {
+            IDictionary<int, CountYear> month = new Dictionary<int, CountYear>() { 
+                {1,new CountYear{ Count=0,Year=0} },
+                {2,new CountYear{ Count=0,Year=0} },
+                {3,new CountYear { Count = 0, Year = 0 } },
+                {4,new CountYear { Count = 0, Year = 0 } },
+                {5,new CountYear { Count = 0, Year = 0 } },
+                {6,new CountYear { Count = 0, Year = 0 } },
+                {7,new CountYear { Count = 0, Year = 0 } },
+                {8,new CountYear { Count = 0, Year = 0 } },
+                {9,new CountYear { Count = 0, Year = 0 } },
+                {10,new CountYear { Count = 0, Year = 0 } },
+                {11,new CountYear { Count = 0, Year = 0 } },
+                {12,new CountYear { Count = 0, Year = 0 } },
+            }; 
+            var monthListCount = _context.Set<Post>()
+                .Where(x=>x.PostedDate.Month>=DateTime.Now.Month&&x.PostedDate.Year>=DateTime.Now.Year-1)
+                .GroupBy(x => new { x.PostedDate.Month,x.PostedDate.Year}).Select(x => new { 
+                month=x.Key.Month,
+                year=x.Key.Year,
+                count=x.Count()
+                
+            });
+            if (monthListCount.Count()>0)
+            {
+                foreach (var item in monthListCount)
+                {
+                    if (month.ContainsKey(item.month))
+                    {
+                        month[item.month]= new CountYear{ Count=item.count,Year=item.year};
+                    }
+                }
+            }
+
+            return month;
+        }
     }
 }
+//select MONTH(posts.PostedDate),YEAR(posts.PostedDate) ,COUNT(posts.PostedDate) from posts
+//where MONTH(posts.PostedDate) >= MONTH(GETDATE()) and YEAR(Posts.PostedDate)>= YEAR(GETDATE()) - 1
+//group by MONTH(posts.PostedDate),YEAR(posts.PostedDate)

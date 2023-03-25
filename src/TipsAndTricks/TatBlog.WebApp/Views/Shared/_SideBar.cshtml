@@ -10,16 +10,33 @@
     Các Chủ Đề
    @await Component.InvokeAsync("CategoriesWidget")
 </h1>
-<!--top bài viết nổi bật-->
+<!--top bài viết nổi bật--> 
 <h1>
     Bài viết nổi bật
+    @await Component.InvokeAsync("FeaturedPostsWidget")
+</h1>
+<!--5 bài viết ngãu nhiên-->
+<h1>
+        5 Bài viết ngãu nhiên
+        @await Component.InvokeAsync("RandomPostsWidget")
 </h1>
 <!--đăng kí nhận tin mới-->
 <h1>
     Đăng kí nhận tin mới
+    <partial name="NewsletterForm" />
 </h1>
 <!--Tag cloud-->
 <h1>
     Tag Cloud
+    @await Component.InvokeAsync("TagCloudWidget")
+</h1>
+<h1>
+    Top 4 Tác Giả nhiều lượt xem nhất
+        @await Component.InvokeAsync("BestAuthorWidget")
+</h1>
+
+<h1>
+    Hiển thị các Tháng
+    @await Component.InvokeAsync("ArchivesWidget")
 </h1>
 </div>

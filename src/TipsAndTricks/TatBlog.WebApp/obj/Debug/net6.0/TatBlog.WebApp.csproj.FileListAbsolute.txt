@@ -296,3 +296,10 @@ X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\obj\Debug\net6.0\ref
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\obj\Debug\net6.0\TatBlog.WebApp.pdb
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\obj\Debug\net6.0\TatBlog.WebApp.genruntimeconfig.cache
 X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\obj\Debug\net6.0\ref\TatBlog.WebApp.dll
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\bin\Debug\net6.0\Mono.TextTemplating.dll
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\bin\Debug\net6.0\System.CodeDom.dll
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\bin\Debug\net6.0\System.Text.Json.dll
+X:\PTUDWNC_2015595_TatBlog\src\TipsAndTricks\TatBlog.WebApp\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

@@ -63,6 +63,10 @@ namespace TatBlog.Services.Blogs
         Task<bool> TogglePublishedFlagAsync(
     int postId, CancellationToken cancellationToken = default);
         Task<bool> DeletePost(int id,CancellationToken cancellationToken=default);
+        Task<IList<Post>> GetFeaturedPostToTakeNumber(int number, CancellationToken cancellationToken=default);
+
+        Task<IList<Tag>> GetAllTagAsync(CancellationToken CancellationToken=default);
+        Task<IDictionary<int, CountYear>> GetAllMonthOfPosts(CancellationToken cancellationToken=default);
             
     }
     

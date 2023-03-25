@@ -4,6 +4,7 @@ using NLog.Web;
 using TatBlog.Data.Contexts;
 using TatBlog.Data.Seeders;
 using TatBlog.Services.Blogs;
+using TatBlog.Services.Blogs.Authors;
 using TatBlog.Services.Media;
 using TatBlog.WebApp.Middlewares;
 
@@ -23,6 +24,9 @@ namespace TatBlog.WebApp.Extensions
         {
             builder.Services.AddDbContext<BlogDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+            builder.Services.AddScoped<IAuthorRepository,AuthorRepository>();
+            builder.Services.AddScoped<IMailService, MailService>();
+            builder.Services.AddScoped<ISubscriberRepository, SubscriberRepository>();
             builder.Services.AddScoped<IDataSeeder, DataSeeder>();
            
             builder.Services.AddScoped<IMediaManager,LocalFileSystemMediaManager>();
