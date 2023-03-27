@@ -1,0 +1,57 @@
+﻿@model TatBlog.WebApp.Areas.Admin.Models.TagsFilterModel
+
+<form asp-area="Admin"
+      asp-controller="Tags"
+      asp-action="Index"
+      method="get"
+      class="row gy-2 gx-3 align-items-center">
+
+    <div class="col-auto">
+        <label class="visually-hidden" asp-for="Keyword"></label>
+
+        <input type="text"
+               class="form-control"
+               asp-for="Keyword"
+               placeholder="Nhập từ khoá..." />
+    </div>
+
+    <div class="col-auto">
+        <label class="visually-hidden"
+               asp-for="TagId"></label>
+
+        <select class="form-select"
+                asp-for="TagId"
+                asp-items="Model.TagList">
+
+            <option value="" selected>
+                -- Chọn Thẻ --
+            </option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">
+            Tìm/Lọc
+        </button>
+
+        <a asp-area="Admin"
+           asp-controller="Tags"
+           asp-action="Edit"
+           class="btn btn-success">
+            Thêm mới
+        </a>
+    </div>
+    <div class="col-auto">
+
+        <a asp-area="Admin"
+           asp-controller="Tags"
+           asp-action="Index"
+           class="btn btn-success">
+            Bỏ Lọc
+        </a>
+
+
+
+    </div>
+
+
+</form>

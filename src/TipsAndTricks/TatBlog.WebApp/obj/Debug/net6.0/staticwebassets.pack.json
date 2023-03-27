@@ -1133,6 +1133,14 @@
       "PackagePath": "staticwebassets\\lib\\speakingurl\\speakingurl.min.js"
     },
     {
+      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\uploads\\pictures\\3e07973cece04d4992b1a4658ab87611.png",
+      "PackagePath": "staticwebassets\\uploads\\pictures\\3e07973cece04d4992b1a4658ab87611.png"
+    },
+    {
+      "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\uploads\\pictures\\6ce9299a8b584afdad09397d92afdc0e.png",
+      "PackagePath": "staticwebassets\\uploads\\pictures\\6ce9299a8b584afdad09397d92afdc0e.png"
+    },
+    {
       "Id": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApp\\wwwroot\\uploads\\pictures\\6ecba905b8b445eda0c4aa62e451b0ea.png",
       "PackagePath": "staticwebassets\\uploads\\pictures\\6ecba905b8b445eda0c4aa62e451b0ea.png"
     },

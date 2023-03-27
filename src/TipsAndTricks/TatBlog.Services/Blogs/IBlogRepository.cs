@@ -19,6 +19,7 @@ namespace TatBlog.Services.Blogs
         Task IncreaseViewCountAsync(int postid, CancellationToken cancellationToken = default);
         Task<IList<CategoryItem>> GetCategoriesAsync(bool showOnMenu = false, CancellationToken cancellationToken = default);
         Task<IPagedList<TagItem>> GetPagedTagsAsync(IPagingParams pagingParams, CancellationToken cancellationToken = default);
+
         Task<Tag> FindTagItemByUrlSlugAsync(string slug,CancellationToken cancellationToken = default);
         Task<IList<TagItem>> GetAllTagssAsync(CancellationToken cancellationToken = default);
         Task<bool> RemoveTagById(int id, CancellationToken cancellationToken = default);
@@ -50,6 +51,11 @@ namespace TatBlog.Services.Blogs
         int pageNumber = 1,
         int pageSize = 10,
         CancellationToken cancellationToken = default);
+        Task<IPagedList<Category>> GetPagedCategoriesAsync(PostQuey condition,
+        int pageNumber = 1,
+        int pageSize = 10,
+        CancellationToken cancellationToken = default);
+        
         Task<IList<Author>> GetAuthorsAsync(CancellationToken cancellationToken = default);
         Task<Post> GetPostByIdAsync(
         int postId, bool includeDetails = false,
@@ -67,7 +73,17 @@ namespace TatBlog.Services.Blogs
 
         Task<IList<Tag>> GetAllTagAsync(CancellationToken CancellationToken=default);
         Task<IDictionary<int, CountYear>> GetAllMonthOfPosts(CancellationToken cancellationToken=default);
-            
+        Task<bool> IsCategorySlugExistedAsync(int categoryid, string slug, CancellationToken cancellationToken = default);
+
+        Task<Category> getCategoryById(int id, CancellationToken cancellationToken=default);
+
+        Task<IPagedList<Tag>> GetPagedTagsAsync(PostQuey condition,
+        int pageNumber = 1,
+        int pageSize = 10,
+        CancellationToken cancellationToken = default);
+        Task<bool> IsTagSlugExistedAsync(int tagid, string slug, CancellationToken cancellationToken = default);
+        Task<bool> AddOrUpdateTag(Tag tag, CancellationToken cancellationToken = default);
+        Task<Tag> getTagById(int id, CancellationToken cancellationToken = default);
     }
     
 }

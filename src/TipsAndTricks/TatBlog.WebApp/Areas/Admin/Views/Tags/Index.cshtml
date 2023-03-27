@@ -1,5 +1,56 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model TatBlog.WebApp.Areas.Admin.Models.TagsFilterModel
 @{
+    ViewData["Title"] = "Danh sách chủ đề";
+    var tagList = ViewBag.TagsList as IPagedList<Tag>;
+}
+<partial name="TagsFilterPane" model="Model" />
+
+@if (tagList != null && tagList.Count > 0)
+{
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Mô tả</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var tag in tagList)
+            {
+                <tr>
+                    <td>
+                        <a asp-area="Admin"
+                   asp-controller="Tags"
+                   asp-action="Edit"
+                   asp-route-id="@tag.Id"
+                           class="fw-bold">
+                            @tag.Name
+                        </a>
+
+                        <p class="text-muted">@tag.Description</p>
+                    </td>
+                    <td>
+                        @tag.Description
+                    </td>
+                    <td>
+                        <form method="post"
+                      asp-area="Admin"
+                      asp-controller="Tags"
+                      asp-action="DeleteTag">
+                            <input type="hidden" name="id" value="@tag.Id" />
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+
+                        </form>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="text-danger">Không tìm thấy thẻ nào</h1>
 }

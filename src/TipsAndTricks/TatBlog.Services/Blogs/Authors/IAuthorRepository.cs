@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TatBlog.Core.Contracts;
+using TatBlog.Core.DTO;
 using TatBlog.Core.Entities;
 using TatBlog.Core.Entities;
 
@@ -24,7 +25,24 @@ f. Tìm danh sách N tác giả có nhiều bài viết nhất. N là tham số 
         Task<Author> FindAuthorbyId(int id,CancellationToken cancellationToken = default);
         Task<Author> FindAuthorbyslugs(string urlslug,CancellationToken cancellationToken = default);
         Task<IList<Author>> GetFourPopulationAuthor(CancellationToken cancellationToken=default);
-        
-        
+
+        Task<bool> AddOrUpdateAsync(
+        Author author, CancellationToken cancellationToken = default);
+        Task<bool> DeleteAuthorAsync(
+        int authorId, CancellationToken cancellationToken = default);
+        Task<bool> IsAuthorSlugExistedAsync(
+        int authorId,
+        string slug,
+        CancellationToken cancellationToken = default);
+        Task<bool> SetImageUrlAsync(
+        int authorId, string imageUrl,
+        CancellationToken cancellationToken = default);
+
+        Task<IPagedList<Author>> GetPagedAuthorAsync(PostQuey condition,
+        int pageNumber = 1,
+        int pageSize = 10,
+        CancellationToken cancellationToken = default);
+        Task<IList<Author>> GetAllAuthorAsync(CancellationToken cancellationToken = default);
+
     }
 }
