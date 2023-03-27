@@ -1,5 +1,62 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model TatBlog.WebApp.Areas.Admin.Models.AuthorFilterModel
 @{
+    ViewData["Title"] = "Danh sách tác giả";
+
+    var authorsList = ViewBag.AuthorsList as IPagedList<Author>;
 }
+
+<h1>Danh sách bài viết</h1>
+
+<partial name="_AuthorFilterPane" model="Model" />
+
+@if (authorsList != null && authorsList.Count > 0)
+{
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+              
+                <th>Tác giả</th>
+                <th>Email</th>
+                <th>Ngày tham gia</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var author in authorsList)
+            {
+                <tr>
+                    <td>
+                        <a asp-area="Admin"
+                   asp-controller="Authors"
+                   asp-action="Edit"
+                   asp-route-id="@author.Id"
+                           class="fw-bold">
+                            @author.FullName
+                        </a>
+
+                        <p class="text-muted">@author.FullName</p>
+                    </td>
+                    <td>
+                        @author.Email
+                    </td>
+                    <td>
+                        @author.JoinedDate
+                    </td>
+                    
+                    <td>
+                        <div class="form-group">
+                            <button type="button" value="@author .Id" class="btn btn-danger" data-bs-target="#deleteModal" data-bs-toggle="modal">
+                                Xóa
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="text-danger">Không tìm thấy tác giả  nào</h1>
+}
+

@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+﻿    using FluentValidation;
 using FluentValidation.AspNetCore;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -141,6 +141,7 @@ namespace TatBlog.WebApp.Areas.Admin.Controllers
             await PopulatePostsEditModelAsync(model);
             return View(model);
         }
+        #region
         public async Task PopulatePostsFitlterModelAsync(PostFilterModel model)
         {
             var categories=await _blogRepository.GetCategoriesAsync();
@@ -177,6 +178,7 @@ namespace TatBlog.WebApp.Areas.Admin.Controllers
                 Value = c.Id.ToString(),
             });
         }
+        #endregion
         [HttpPost]
         public async Task<IActionResult> VerifyPostSlug(int id,string urlSlug)
         {
