@@ -26,6 +26,8 @@ f. Tìm danh sách N tác giả có nhiều bài viết nhất. N là tham số 
         Task<Author> FindAuthorbyslugs(string urlslug,CancellationToken cancellationToken = default);
         Task<IList<Author>> GetFourPopulationAuthor(CancellationToken cancellationToken=default);
 
+        Task<IList<Author>> Find_N_MostPostByAuthorAsync(int limit,CancellationToken cancellationToken = default);
+
         Task<bool> AddOrUpdateAsync(
         Author author, CancellationToken cancellationToken = default);
         Task<bool> DeleteAuthorAsync(
@@ -43,6 +45,35 @@ f. Tìm danh sách N tác giả có nhiều bài viết nhất. N là tham số 
         int pageSize = 10,
         CancellationToken cancellationToken = default);
         Task<IList<Author>> GetAllAuthorAsync(CancellationToken cancellationToken = default);
+
+
+
+        Task<Author> GetAuthorBySlugAsync(
+        string slug,
+        CancellationToken cancellationToken = default);
+
+        Task<Author> GetCachedAuthorBySlugAsync(
+            string slug, CancellationToken cancellationToken = default);
+
+        Task<Author> GetAuthorByIdAsync(int authorId);
+
+        Task<Author> GetCachedAuthorByIdAsync(int authorId);
+
+        Task<IList<AuthorItem>> GetAuthorsAsync(
+            CancellationToken cancellationToken = default);
+
+        Task<IPagedList<AuthorItem>> GetPagedAuthorsAsync(
+            IPagingParams pagingParams,
+            string name = null,
+            CancellationToken cancellationToken = default);
+
+        Task<IPagedList<T>> GetPagedAuthorsAsync<T>(
+            Func<IQueryable<Author>, IQueryable<T>> mapper,
+            IPagingParams pagingParams,
+            string name = null,
+            CancellationToken cancellationToken = default);
+
+       
 
     }
 }
