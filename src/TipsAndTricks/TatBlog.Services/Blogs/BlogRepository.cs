@@ -742,6 +742,13 @@ namespace TatBlog.Services.Blogs
             nameof(Tag.Id), "DESC",
             cancellationToken);
         }
+
+        public  async Task<IPagedList<T>> GetPostByQueryAsync<T>(PostQuey query, IPagingParams pagingParams, Func<IQueryable<Post>, IQueryable<T>> mapper, CancellationToken cancellationToken = default)
+        {
+            IQueryable<T> result = mapper(FilterPosts(query));
+
+            return await result.ToPagedListAsync(pagingParams, cancellationToken);
+        }
     }
 }
 //select MONTH(posts.PostedDate),YEAR(posts.PostedDate) ,COUNT(posts.PostedDate) from posts
