@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\NewFolder\**" />
+    <Content Remove="wwwroot\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder\**" />
+    <None Remove="wwwroot\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.2.2" />
@@ -17,11 +24,6 @@
     <ProjectReference Include="..\TatBlog.Core\TatBlog.Core.csproj" />
     <ProjectReference Include="..\TatBlog.Data\TatBlog.Data.csproj" />
     <ProjectReference Include="..\TatBlog.Services\TatBlog.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\NewFolder\" />
-    <Folder Include="wwwroot\uploads\pictures\" />
   </ItemGroup>
 
 </Project>

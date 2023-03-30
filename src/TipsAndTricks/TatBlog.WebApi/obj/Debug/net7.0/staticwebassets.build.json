@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Pz4juIFt9VbvAvT/X1/Q93jVytO1/68oS/Y0FnUindo=",
+  "Hash": "8rMlNnR+LwYcRnHbyz1ooJ2H9wp0aWLBW9QbHT3tTEg=",
   "Source": "TatBlog.WebApi",
   "BasePath": "_content/TatBlog.WebApi",
   "Mode": "Default",
@@ -15,5 +15,23 @@
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApi\\wwwroot\\uploads\\pictures\\Ảnh chụp màn hình 2023-03-23 223439.png",
+      "SourceId": "TatBlog.WebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "X:\\PTUDWNC_2015595_TatBlog\\src\\TipsAndTricks\\TatBlog.WebApi\\wwwroot\\",
+      "BasePath": "_content/TatBlog.WebApi",
+      "RelativePath": "uploads/pictures/Ảnh chụp màn hình 2023-03-23 223439.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\pictures\\Ảnh chụp màn hình 2023-03-23 223439.png"
+    }
+  ]
 }
