@@ -17,6 +17,7 @@ using System.Reflection.Metadata.Ecma335;
 using Microsoft.Identity.Client;
 using System.Net.WebSockets;
 using Microsoft.VisualBasic;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace TatBlog.Services.Blogs
 {
@@ -24,15 +25,39 @@ namespace TatBlog.Services.Blogs
     public class BlogRepository : IBlogRepository
     {
         private readonly BlogDbContext _context;
-
-        public BlogRepository(BlogDbContext context)
+        private readonly IMemoryCache _memoryCache;
+        public BlogRepository(BlogDbContext context,IMemoryCache memoryCache)
         {
             _context = context;
-
+            _memoryCache = memoryCache;
         }
+        
+        public async Task<Post> GetCachedPostAsync(int year, int month, int day, string slug, CancellationToken cancellationToken = default)
+        {
+            return await _memoryCache.GetOrCreateAsync(
+                $"post.{year}-{month}-{day}-{slug}",
+                async (entry) =>
+                {
+                    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30);
+                    return await GetCachedPostAsync(year, month, day, slug, cancellationToken);
+                });
+        }
+        public async Task<Post> GetCachedPostByIdAsync(int id, bool published = false, CancellationToken cancellationToken = default)
+        {
+            return await _memoryCache.GetOrCreateAsync(
+                $"post.by-id.{id}-{published}",
+                async (entry) =>
+                {
+                    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30);
+                    return await GetPostByIdAsync(id, published, cancellationToken);
+                });
+        }
+        public async Task<IPagedList<T>> GetPostByQueryAsync<T>(PostQuey query, IPagingParams pagingParams, Func<IQueryable<Post>, IQueryable<T>> mapper, CancellationToken cancellationToken = default)
+        {
+            IQueryable<T> result = mapper(FilterPosts(query));
 
-
-
+            return await result.ToPagedListAsync(pagingParams, cancellationToken);
+        }
         public async Task<IList<CategoryItem>> GetCategoriesAsync(bool showOnMenu = false, CancellationToken cancellationToken = default)
         {
             IQueryable<Category> categories = _context.Set<Category>();
@@ -743,12 +768,7 @@ namespace TatBlog.Services.Blogs
             cancellationToken);
         }
 
-        public  async Task<IPagedList<T>> GetPostByQueryAsync<T>(PostQuey query, IPagingParams pagingParams, Func<IQueryable<Post>, IQueryable<T>> mapper, CancellationToken cancellationToken = default)
-        {
-            IQueryable<T> result = mapper(FilterPosts(query));
-
-            return await result.ToPagedListAsync(pagingParams, cancellationToken);
-        }
+        
     }
 }
 //select MONTH(posts.PostedDate),YEAR(posts.PostedDate) ,COUNT(posts.PostedDate) from posts
