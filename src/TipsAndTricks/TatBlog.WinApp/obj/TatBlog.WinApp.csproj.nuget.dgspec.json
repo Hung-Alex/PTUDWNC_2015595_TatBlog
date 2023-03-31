@@ -177,6 +177,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.6.0, )"
+            },
             "System.Linq.Dynamic.Core": {
               "target": "Package",
               "version": "[1.2.25, )"
