@@ -13,6 +13,7 @@ namespace TatBlog.Services.Blogs
 {
     public interface IBlogRepository
     {
+
         Task<Post> GetCachedPostAsync(int year, int month, int day, string slug, CancellationToken cancellationToken = default);
         Task<Post> GetCachedPostByIdAsync(int id, bool published = false, CancellationToken cancellationToken = default);
         Task<IPagedList<T>> GetPostByQueryAsync<T>(PostQuey query, IPagingParams pagingParams, Func<IQueryable<Post>, IQueryable<T>> mapper, CancellationToken cancellationToken = default);

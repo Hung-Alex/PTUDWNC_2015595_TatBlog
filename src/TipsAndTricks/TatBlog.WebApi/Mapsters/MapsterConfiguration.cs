@@ -20,8 +20,12 @@ namespace TatBlog.WebApi.Mapsters
                   .Map(dest => dest.PostCount,
                 src => src.Posts == null ? 0 : src.Posts.Count
                 );
+            config.NewConfig<PostQuey, PostFilterModel>();
             config.NewConfig<Post, PostDto>();
             config.NewConfig<Post, PostDetail>();
+            config.NewConfig<Post, PostItem>()
+               .Map(dest => dest.AuthorName, src => src.Author.FullName)
+               .Map(dest => dest.Tags, src => src.Tags.Select(t => t.Name));
 
 
 

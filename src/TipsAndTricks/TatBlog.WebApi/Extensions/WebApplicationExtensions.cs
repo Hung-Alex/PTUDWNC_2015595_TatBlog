@@ -33,7 +33,8 @@ namespace TatBlog.WebApi.Extensions
                     options.AddPolicy("TatBlogApp", policyBuider => policyBuider
                .AllowAnyHeader()
                .AllowAnyOrigin()
-               .AllowAnyMethod());
+               .AllowAnyMethod()
+               );
                 });
             return builder;
         }
