@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\src",
-    "\\src\\TipsAndTricks",
-    "\\src\\TipsAndTricks\\TatBlog.WebApi",
-    "\\src\\TipsAndTricks\\TatBlog.WebApi\\Models"
+    ""
   ],
-  "SelectedNode": "\\src\\TipsAndTricks\\TatBlog.WebApi\\Models\\PostFilterModel.cs",
+  "SelectedNode": "\\TipsAndTricks.sln",
   "PreviewInSolutionExplorer": false
 }

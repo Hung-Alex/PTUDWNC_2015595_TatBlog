@@ -1,7 +1,10 @@
-﻿namespace TatBlog.WebApi.Models
+﻿using System.ComponentModel;
+
+namespace TatBlog.WebApi.Models
 {
     public class PostFilterModel
     {
+        
         public string Keyword { get; set; }
         public bool ?PublishedOnly { get; set; } = true;
         public bool?NotPublished { get; set; } = false;

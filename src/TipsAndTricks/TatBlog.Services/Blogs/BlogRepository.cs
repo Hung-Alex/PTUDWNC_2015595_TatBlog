@@ -18,6 +18,8 @@ using Microsoft.Identity.Client;
 using System.Net.WebSockets;
 using Microsoft.VisualBasic;
 using Microsoft.Extensions.Caching.Memory;
+using System.Globalization;
+using NPOI.SS.Formula.Functions;
 
 namespace TatBlog.Services.Blogs
 {
@@ -430,6 +432,9 @@ namespace TatBlog.Services.Blogs
              .Include(x => x.Category)
              .Include(x => x.Author)
              .Include(x => x.Tags);
+           
+
+
             return await posts.OrderBy(x=>Guid.NewGuid()).Take(numPosts).ToListAsync(cancellationToken);
             
         }
@@ -767,8 +772,35 @@ namespace TatBlog.Services.Blogs
             nameof(Tag.Id), "DESC",
             cancellationToken);
         }
+        public async Task<IList<DateItem>> GetArchivesPostAsync(int limit, CancellationToken cancellationToken = default)
+        {
+            var lastestMonths = await GetLatestMonthList(limit);
 
-        
+            return await Task.FromResult(_context.Set<Post>().AsEnumerable()
+                                                                .GroupBy(p => new
+                                                                {
+                                                                    p.PostedDate.Month,
+                                                                    p.PostedDate.Year
+                                                                })
+                                                                .Join(lastestMonths, d => d.Key.Month, m => m.Month,
+                                                                (postDate, monthGet) => new DateItem
+                                                                {
+                                                                    Month = postDate.Key.Month,
+                                                                    MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(postDate.Key.Month),
+                                                                    Year = postDate.Key.Year,
+                                                                    PostCount = postDate.Count()
+                                                                }).ToList());
+        }
+        public async Task<IList<DateItem>> GetLatestMonthList(int limit)
+        {
+            return await Task.FromResult((from r in Enumerable.Range(1, 12) select DateTime.Now.AddMonths(limit - r))
+                                .Select(x => new DateItem
+                                {
+                                    Month = x.Month,
+                                    Year = x.Year
+                                }).ToList());
+        }
+
     }
 }
 //select MONTH(posts.PostedDate),YEAR(posts.PostedDate) ,COUNT(posts.PostedDate) from posts

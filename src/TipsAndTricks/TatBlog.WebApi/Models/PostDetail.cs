@@ -28,6 +28,7 @@
         public AuthorDto Author { get; set; }
         //danh sach cac tu khoa cua bai viet
         public IList<TagDto> Tags { get; set; }
+        public bool Pusblished { get; set; }
 
     }
 }

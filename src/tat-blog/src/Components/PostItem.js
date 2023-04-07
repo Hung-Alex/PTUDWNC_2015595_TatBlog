@@ -24,11 +24,23 @@ const PostList = ({ postItem }) => {
               <Card.Text>
                 <small className="text-muted">Tác giả :</small>
                 <span className="text-primary m-1">
-                  {postItem.authorName} 
+                <Link to={`/blog/author/${String(postItem.authorName)}`}
+                                    title={postItem.authorName}
+                                    className="text-decoration-none">
+                                        
+                                        <span> {postItem.authorName} </span>
+                                    </Link>
+                 
                 </span>
                 <small className="text-muted">Chủ đề :</small>
                 <span className="text-primary m-1">
-                  {postItem.authorName}
+                  {postItem.categoryName}
+                  <Link to={`/blog/category/${String(postItem.categoryName)}`}
+                                    title={postItem.categoryName}                                   
+                                    className="text-decoration-none">
+                                        
+                                        <span> {postItem.categoryName} </span>
+                                    </Link>
                 </span>
               </Card.Text>
               <Card.Text>{postItem.shortDescription}</Card.Text>
@@ -37,11 +49,7 @@ const PostList = ({ postItem }) => {
               </div>
               <div className="text-end">
                 <Link
-                  to={`/blog/post
-                            ?year=${postedDate.getFullYear()}
-                            &month=${postedDate.getMonth()}
-                            &day=${postedDate.getDay()}
-                            &slug=${postItem.urlSlug}`}
+                  to={`/blog/post/${Number(postedDate.getFullYear())}/${Number(postedDate.getMonth())}/${Number(postedDate.getDay())}/${String(postItem.urlSlug)}`}
                   className="btn btn-primary"
                   title={postItem.Title}
                 >
