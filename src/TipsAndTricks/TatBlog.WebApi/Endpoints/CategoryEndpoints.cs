@@ -81,7 +81,7 @@ namespace TatBlog.WebApi.Endpoints
 
             var paginationResult = new PaginationResult<PostDto>(postsList);
 
-            return Results.Ok(paginationResult);
+            return Results.Ok(ApiResponse.Success(paginationResult));
         }
         private static async Task<IResult> AddCategory(CategoryEditModel model, ICategoryResponsitory categoryRepository, IMapper mapper)
         {
@@ -106,12 +106,12 @@ namespace TatBlog.WebApi.Endpoints
             var category = mapper.Map<Category>(model);
             category.Id = id;
 
-            return await categoryRepository.AddOrUpdateCategoryAsync(category) ? Results.NoContent() : Results.NotFound();
+            return await categoryRepository.AddOrUpdateCategoryAsync(category) ? Results.Ok(ApiResponse.Success(HttpStatusCode.NoContent)) : Results.Ok(ApiResponse.Success(HttpStatusCode.NotFound));
         }
 
         private static async Task<IResult> DeleteCategory(int id, ICategoryResponsitory categoryRepository)
         {
-            return await categoryRepository.DeleteCategoryByIdAsync(id) ? Results.NoContent() : Results.NotFound($"Could not find category with id = {id}");
+            return await categoryRepository.DeleteCategoryByIdAsync(id) ? Results.Ok(HttpStatusCode.NoContent) : Results.Ok(ApiResponse.Fail(HttpStatusCode.NotFound, $"Could not find category with id = {id}"));
         }
     }
 }

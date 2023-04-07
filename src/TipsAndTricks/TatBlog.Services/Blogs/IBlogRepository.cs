@@ -89,6 +89,7 @@ namespace TatBlog.Services.Blogs
         Task<bool> AddOrUpdateTag(Tag tag, CancellationToken cancellationToken = default);
         Task<Tag> getTagById(int id, CancellationToken cancellationToken = default);
 
+        Task<IList<DateItem>> GetArchivesPostAsync(int limit, CancellationToken cancellationToken = default);
     }
     
 }

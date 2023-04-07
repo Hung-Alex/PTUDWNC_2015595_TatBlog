@@ -20,6 +20,7 @@ var app = builder.Build();
     app.MapAuthorEnpoints();
     app.MapCategoryEnpoints();
     app.MapPostEnpoints();
+    app.MapTagEndpoints();
 
 
 
